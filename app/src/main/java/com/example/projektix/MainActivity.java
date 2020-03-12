@@ -14,13 +14,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-
+/**
+ * Class includes the main functions of the app */
 
 public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    // Declaring the variables
+    /** Declaring the variables*/
 
     ListView lv;
     int i;
@@ -54,13 +55,14 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------------------//
 
 
-    // Method of "Go" button in start screen
+    /** Method of "Go" button in start screen
+     * Sets the second view for the user which is teh questionnaire*/
 
     public void goButton(View view) {
         setContentView(R.layout.secondview);
     }
 
-    // Method of "My tasks" button in start screen
+    /** Method of "My tasks" button in start screen*/
 
     public void myTasks(View view) {
         setContentView(R.layout.listofdays);
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------------------//
 
 
-    // Methods of the back arrows
+    /** Methods of the back arrows, allows user to move back on the app without using the buttons on the phone*/
 
     public void backArrow1(View view) {
         setContentView(R.layout.activity_main);
@@ -99,11 +101,11 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    // Method of "Generate" button in the view of questions
+    /** Method of "Generate" button in the view of questions
 
     // Set the view, dependable on the finalOption
 
-    // Add the generated task on the list
+    // Add the generated task on the list*/
 
 
 
@@ -285,13 +287,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        // If no options are chosen:
+        /** If no options are chosen:*/
 
         if (radioOption == 0 || (!checkBox2Status && !checkBox3Status && !checkBox4Status && !checkBox5Status && !checkBox6Status)) {
             Toast.makeText(this, "Choose the most fitting options first", Toast.LENGTH_SHORT).show();
         }
 
-        // When 5 tasks have been generated:
+        /** When 5 tasks have been generated:*/
 
     } else {
             Toast.makeText(this, "You have generated 5 tasks. Try doing some of them!", Toast.LENGTH_SHORT).show();
@@ -302,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    // Try again -button in GuideView
+    /** Try again -button in GuideView*/
 
     public void tryAgain(View v) {
         Generate(v);
@@ -310,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------------------//
 
 
-    // Method of phone's back button
+    /** Method of phone's back button*/
 
     @Override
     public void onBackPressed() {
@@ -329,7 +331,7 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------------------//
 
 
-    // Methods when RadioButtons are clicked, return the values from chosen RadioButtons
+    /** Methods when RadioButtons are clicked, return the values from chosen RadioButtons*/
 
 
     public int checkButton1(View view) {
@@ -351,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    // Change the status when Checkboxes are clicked
+    /** Change the status when Checkboxes are clicked*/
 
     public void checkBox2Checked(View v) {
         checkBox2Status = !checkBox2Status;
@@ -381,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    // Method to generate the right GuideView, just for you :)
+    /** Method to generate the right GuideView, just for you :)*/
 
     public int GenerateFinalOption() {
         if (radioOption == 1) {
