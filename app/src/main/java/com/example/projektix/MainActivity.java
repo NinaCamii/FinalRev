@@ -15,13 +15,18 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
- * Class includes the main functions of the app */
+ * this main class includes the main functions of the app, which have not been separated as their own classes
+ * this class generates the tasks, marks the tasks as done, sets the different views and sets the functions for
+ * all buttons, checkboxes and radiobuttons
+ * @author ninac
+ * @author samuel
+ * @author joona*/
 
 public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    /** Declaring the variables*/
+    /** Declaring the variables used in this class*/
 
     ListView lv;
     int i;
@@ -37,17 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     //----------------------------------------------------------------------------------------------------------//
-
+/** on create opens the correct view which is saved in instance, sets the main screen on the activity
+ * @param savedInstanceState */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         radioGroup = new RadioGroup(this);
         radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
 
         Log.d("tag", "App launched...");
-        /* FULL SCREEN:
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
 
         setContentView(R.layout.activity_main);
     }
@@ -56,13 +58,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     /** Method of "Go" button in start screen
-     * Sets the second view for the user which is teh questionnaire*/
+     * Sets the second view for the user which is the questionnaire
+     * @param view the view that was clicked, go button
+     * @returns the questionnaire view*/
 
     public void goButton(View view) {
         setContentView(R.layout.secondview);
     }
 
-    /** Method of "My tasks" button in start screen*/
+    /** Method of "My tasks" button in start screen, sets the view as the list view of the tasks
+     * sets the check mark next to the tasks
+     * uses the task number to determine which task was marked as done.
+     * shows a toast on the screen telling the user good job when a task is marked as done
+     * allows the user to generate more tasks after the old ones have been marked as done
+     * @param view the view that was clicked my tasks button*/
 
     public void myTasks(View view) {
         setContentView(R.layout.listofdays);
@@ -74,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 SparseBooleanArray sparseBooleanArray = lv.getCheckedItemPositions();
                 Log.d("tag", "Clicked Position := "+ i + " Value: "+sparseBooleanArray.get(i));
@@ -90,7 +100,10 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------------------//
 
 
-    /** Methods of the back arrows, allows user to move back on the app without using the buttons on the phone*/
+    /** Methods of the back arrows, allows user to move back on the app without using the buttons on the phone
+     * first back arrow directs the user to the main view
+     * second arrow directs user to the task list
+     * @param view the view that was clicked, back arrow*/
 
     public void backArrow1(View view) {
         setContentView(R.layout.activity_main);
@@ -102,10 +115,10 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------------------//
 
     /** Method of "Generate" button in the view of questions
-
-    // Set the view, dependable on the finalOption
-
-    // Add the generated task on the list*/
+     * Sets the view, dependable on the finalOption
+     * Adds the generated task on the list
+     @param v the view that was clicked, the generate button
+     @returns the task that was created based on the questionnaire, sets the task as the view*/
 
 
 
@@ -287,13 +300,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        /** If no options are chosen:*/
+        /** If no options are chosen the toast prompts user to make a choice on the options first*/
 
         if (radioOption == 0 || (!checkBox2Status && !checkBox3Status && !checkBox4Status && !checkBox5Status && !checkBox6Status)) {
             Toast.makeText(this, "Choose the most fitting options first", Toast.LENGTH_SHORT).show();
         }
 
-        /** When 5 tasks have been generated:*/
+        /** When 5 tasks have been generated and none has been done the toast reminds user to do some tasks
+         * before generating more tasks*/
 
     } else {
             Toast.makeText(this, "You have generated 5 tasks. Try doing some of them!", Toast.LENGTH_SHORT).show();
@@ -304,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    /** Try again -button in GuideView*/
+    /** Try again -button in GuideView, uses the generate method until five tasks have been generated*/
 
     public void tryAgain(View v) {
         Generate(v);
@@ -312,7 +326,8 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------------------//
 
 
-    /** Method of phone's back button*/
+    /** Method of phone's back button, depending on where the user is directs the user to the correct view
+     * @returns a correct view depending where the user is when back button is pressed*/
 
     @Override
     public void onBackPressed() {
@@ -331,7 +346,9 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------------------//
 
 
-    /** Methods when RadioButtons are clicked, return the values from chosen RadioButtons*/
+    /** Methods for when RadioButtons are clicked,
+     * @param view view which was clicked
+     * @returns the values from chosen RadioButtons*/
 
 
     public int checkButton1(View view) {
@@ -353,7 +370,9 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    /** Change the status when Checkboxes are clicked*/
+    /** Change the status when Checkboxes are clicked
+     * chancges the status from selected to not selected and vice versa
+     * @param v view which was clicked*/
 
     public void checkBox2Checked(View v) {
         checkBox2Status = !checkBox2Status;
@@ -383,7 +402,8 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------------------------//
 
-    /** Method to generate the right GuideView, just for you :)*/
+    /** Method to generate the right GuideView, just for you :)
+     * @return the finalised task option based on the questionnaire or a toast if no tasks fit the selcted options*/
 
     public int GenerateFinalOption() {
         if (radioOption == 1) {
